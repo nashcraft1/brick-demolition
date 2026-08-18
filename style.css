@@ -1,0 +1,235 @@
+/* Brick Demolition — shared styles
+   Palette lifted from the game's own neon values in ArcadeUI.swift / ArcadeBackdrop.swift */
+
+:root {
+  --bg:        #05060d;
+  --bg-raised: #0c0f1c;
+  --ink:       #eef0f8;
+  --ink-dim:   #9aa0b8;
+  --rule:      #1d2237;
+
+  --pink:   #ff59bf;
+  --cyan:   #59f2ff;
+  --green:  #4dff8c;
+  --purple: #a68cff;
+  --gold:   #ffc74d;
+
+  --measure: min(1080px, 100% - 2.5rem);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* The perspective grid that sits behind the game's menus. */
+.grid-bg {
+  position: fixed;
+  inset: auto 0 0 0;
+  height: 45vh;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    repeating-linear-gradient(to right,  rgba(89,242,255,.10) 0 1px, transparent 1px 68px),
+    repeating-linear-gradient(to bottom, rgba(89,242,255,.10) 0 1px, transparent 1px 68px);
+  transform: perspective(340px) rotateX(62deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to bottom, transparent, #000 55%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 55%);
+}
+
+.wrap { width: var(--measure); margin-inline: auto; position: relative; z-index: 1; }
+
+a { color: var(--cyan); text-underline-offset: 3px; }
+a:hover { color: var(--ink); }
+
+/* ---------- header ---------- */
+
+.masthead { padding: 4.5rem 0 3rem; text-align: center; }
+
+.appicon {
+  width: 104px; height: 104px;
+  border-radius: 23%;
+  display: block; margin: 0 auto 1.6rem;
+  box-shadow: 0 0 34px rgba(255,89,191,.34), 0 10px 34px rgba(0,0,0,.6);
+}
+
+.wordmark { margin: 0; line-height: .92; letter-spacing: -.02em; }
+.wordmark .l1,
+.wordmark .l2 { display: block; font-weight: 900; }
+.wordmark .l1 {
+  font-size: clamp(2.9rem, 11vw, 5.2rem);
+  color: #fff;
+  text-shadow: 0 0 26px rgba(255,89,191,.85), 0 0 62px rgba(255,89,191,.45);
+}
+.wordmark .l2 {
+  font-size: clamp(1.9rem, 7.4vw, 3.5rem);
+  color: #fff;
+  text-shadow: 0 0 24px rgba(89,242,255,.85), 0 0 58px rgba(89,242,255,.42);
+}
+
+.tagline {
+  margin: 1.4rem auto 0;
+  max-width: 34rem;
+  font-size: 1.16rem;
+  color: var(--ink-dim);
+}
+
+/* ---------- App Store button ---------- */
+
+.cta-row { margin-top: 2.2rem; display: flex; gap: .9rem; justify-content: center; flex-wrap: wrap; }
+
+.cta {
+  display: inline-block;
+  padding: .95rem 2.1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1.02rem;
+  text-decoration: none;
+  border: 2px solid var(--green);
+  color: #fff;
+  background: rgba(77,255,140,.13);
+  box-shadow: 0 0 22px rgba(77,255,140,.4);
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.cta:hover {
+  background: rgba(77,255,140,.24);
+  box-shadow: 0 0 34px rgba(77,255,140,.62);
+  transform: translateY(-2px);
+  color: #fff;
+}
+.cta.secondary {
+  border-color: var(--purple);
+  background: rgba(166,140,255,.12);
+  box-shadow: 0 0 22px rgba(166,140,255,.34);
+}
+.cta.secondary:hover { background: rgba(166,140,255,.24); box-shadow: 0 0 34px rgba(166,140,255,.55); }
+
+.price-note { margin-top: 1rem; font-size: .94rem; color: var(--ink-dim); }
+
+/* ---------- sections ---------- */
+
+section { padding: 3.4rem 0; }
+
+h2 {
+  font-size: clamp(1.5rem, 4.2vw, 2.05rem);
+  font-weight: 800;
+  margin: 0 0 .4rem;
+  letter-spacing: -.01em;
+}
+.section-lead { margin: 0 0 2rem; color: var(--ink-dim); max-width: 46rem; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .6rem;
+}
+
+/* ---------- feature cards ---------- */
+
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); }
+
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 1.4rem 1.4rem 1.5rem;
+}
+.card h3 { margin: 0 0 .45rem; font-size: 1.06rem; font-weight: 800; }
+.card p  { margin: 0; color: var(--ink-dim); font-size: .97rem; }
+.card .mark { font-size: 1.5rem; line-height: 1; display: block; margin-bottom: .7rem; }
+
+.c-pink   { border-color: rgba(255,89,191,.42); box-shadow: 0 0 24px rgba(255,89,191,.10) inset; }
+.c-cyan   { border-color: rgba(89,242,255,.42); box-shadow: 0 0 24px rgba(89,242,255,.10) inset; }
+.c-green  { border-color: rgba(77,255,140,.42); box-shadow: 0 0 24px rgba(77,255,140,.10) inset; }
+.c-gold   { border-color: rgba(255,199,77,.42); box-shadow: 0 0 24px rgba(255,199,77,.10) inset; }
+
+/* ---------- shots ---------- */
+
+.shots { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.shots figure { margin: 0; }
+.shots img {
+  width: 100%; height: auto; display: block;
+  border-radius: 13px;
+  border: 1px solid var(--rule);
+}
+.shots figcaption { margin-top: .55rem; font-size: .9rem; color: var(--ink-dim); }
+
+/* ---------- plain list ---------- */
+
+.ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
+.ticks li { padding-left: 1.7rem; position: relative; color: var(--ink-dim); }
+.ticks li::before {
+  content: "▸"; position: absolute; left: 0; top: 0;
+  color: var(--green); font-weight: 900;
+}
+.ticks strong { color: var(--ink); font-weight: 700; }
+
+/* ---------- support page ---------- */
+
+.faq { border-top: 1px solid var(--rule); }
+.faq details {
+  border-bottom: 1px solid var(--rule);
+  padding: 1.05rem 0;
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.03rem;
+  list-style: none;
+  display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--cyan); font-weight: 900; font-size: 1.3rem; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--ink-dim); margin: .8rem 0 0; }
+.faq details p:last-child { margin-bottom: .2rem; }
+
+.contact-box {
+  background: var(--bg-raised);
+  border: 1px solid rgba(89,242,255,.4);
+  border-radius: 16px;
+  padding: 1.7rem;
+  box-shadow: 0 0 30px rgba(89,242,255,.10) inset;
+}
+.contact-box .email {
+  font-size: clamp(1.05rem, 3.6vw, 1.4rem);
+  font-weight: 800;
+  word-break: break-all;
+}
+
+.pill {
+  display: inline-block; padding: .2rem .7rem; border-radius: 999px;
+  font-size: .78rem; font-weight: 800; letter-spacing: .04em;
+  background: rgba(77,255,140,.14); color: var(--green);
+  border: 1px solid rgba(77,255,140,.4);
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 2.5rem;
+  padding: 2.2rem 0 3rem;
+  color: var(--ink-dim);
+  font-size: .92rem;
+}
+footer nav { display: flex; gap: 1.3rem; flex-wrap: wrap; margin-bottom: .9rem; }
+
+/* ---------- motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .cta:hover { transform: none; }
+}
